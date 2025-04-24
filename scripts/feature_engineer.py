@@ -1,7 +1,6 @@
 # scripts/feature_engineer.py
 import pandas as pd
 import os
-from arch import arch_model
 import numpy as np
 from scipy.stats import genpareto
 
