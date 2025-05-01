@@ -126,7 +126,11 @@ function setupForecastChart(predictions) {
   // Format the data
   const chartData = predictions.map(item => {
     const date = new Date(item.date);
-    const formattedDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    const formattedDate = date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        timeZone: 'UTC'
+    });
 
     const riskScore = Math.round(
       item.risk_prob_low * 0 +
