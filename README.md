@@ -64,8 +64,8 @@ Contains trained models and selected feature sets for each currency pair (`.pkl`
 ## 🚀 Installation
 
 ```bash
-git clone https://github.com/yourusername/fx-risk-dashboard.git
-cd fx-risk-dashboard
+git clone https://github.com/YouhuiPang/exchange_risk_project.git
+cd exchange_risk_project
 pip install -r requirements.txt
 ```
 
