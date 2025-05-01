@@ -27,7 +27,6 @@ def clean_data(X):
 
 
 def add_macro_anomaly_features(X, macro_cols):
-    """添加宏观异常特征"""
     print(f"添加宏观异常特征，初始列: {list(X.columns)}")
     X_new = X.copy()
     for col in macro_cols:

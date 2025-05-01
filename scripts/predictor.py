@@ -83,7 +83,7 @@ def predict_risk(pair, features_csv_path, output_csv_path):
     except Exception as e:
         print(f"⚠️ 生成 SHAP 数据失败: {e}")
 
-    # ✅ 保存历史预测记录（避免重复，但保留近3天）
+    # 保存历史预测记录
     history_path = os.path.join(root, "data", f"all_predictions_{pair.lower().replace('/', '_')}.csv")
     try:
         df_to_save = df[output_cols].copy()

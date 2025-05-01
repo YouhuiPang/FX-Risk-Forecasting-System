@@ -7,9 +7,7 @@ import pandas as pd
 
 
 def job_update_and_train(pair):
-    """
-    每日只更新数据和特征，不重新训练模型。
-    """
+
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     pair_key = pair.lower().replace("/", "_")
     exchange_data_path = os.path.join(root, "data", f"{pair_key}.csv")
@@ -31,9 +29,7 @@ def job_update_and_train(pair):
 
 
 def job_predict(pair):
-    """
-    定时任务：对指定交易对进行风险预测
-    """
+
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     features_csv_path = os.path.join(root, "data", f"features_{pair.lower().replace('/', '_')}.csv")
     output_csv_path = os.path.join(root, "data", f"predictions_{pair.lower().replace('/', '_')}.csv")
@@ -50,9 +46,7 @@ def job_predict(pair):
 
 
 def update_if_not_updated(pair):
-    """
-    网页调用时触发的数据检查逻辑，仅更新数据，不训练模型。
-    """
+
     try:
         root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         features_path = os.path.join(root, "data", f"features_{pair.lower().replace('/', '_')}.csv")
@@ -76,10 +70,8 @@ def update_if_not_updated(pair):
 
 
 def main():
-    """
-    启动调度器，对多个交易对每日定时更新与预测。
-    """
-    pairs = ["USD/CNY"]  # 可扩展多个交易对
+
+    pairs = ["USD/CNY"]
 
     for pair in pairs:
         schedule.every().day.at("00:42").do(job_update_and_train, pair=pair)

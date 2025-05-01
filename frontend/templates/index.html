@@ -1,169 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Currency Risk Prediction Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body class="p-6 text-white bg-[#0f172a]">
-  <div class="max-w-5xl mx-auto">
-    <div class="flex flex-col md:flex-row justify-between items-start mb-8">
-      <h1 class="text-4xl font-bold mb-6 md:mb-0">Currency Risk Prediction</h1>
-      <div class="relative w-full md:w-64">
-        <select class="appearance-none w-full bg-transparent border border-gray-600 rounded-lg px-4 py-3 text-white">
-          <option selected>USD / CNY</option>
-        </select>
-        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
-          <i class="fas fa-chevron-down text-gray-400"></i>
-        </div>
-      </div>
-    </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exchange Rate Risk Dashboard</title>
+    <meta name="description" content="Forex Risk Beacon Dashboard" />
+    <meta name="author" content="Lovable" />
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  </head>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
-        <h2 class="text-lg text-blue-300 mb-4">RISK LEVEL</h2>
-        <canvas id="riskGauge" width="200" height="125"></canvas>
-        <div class="text-center mt-4">
-          <div id="riskTextLabel" class="text-3xl font-bold uppercase">Loading...</div>
-          <div id="riskTextExplain" class="mt-2 text-sm text-gray-400">Please wait...</div>
-        </div>
-      </div>
-
-      <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
-        <h2 class="text-2xl mb-5">Prediction</h2>
-        <div id="prediction_rate" class="text-7xl font-bold mb-3">--%</div>
-        <div class="flex items-center text-teal-500 mb-4">
-          <i class="fas fa-arrow-up h-5 w-5 mr-1"></i>
-          <span id="volatility_label">Loading...</span>
-        </div>
-        <div class="space-y-2">
-          <div class="flex">
-            <span class="text-blue-400 w-36">RISK:</span>
-            <span id="risk_percentage">--%</span>
-          </div>
-          <div class="flex">
-            <span class="text-blue-400 w-36">DATE:</span>
-            <span id="prediction_date">--</span>
-          </div>
-          <div class="flex">
-            <span class="text-blue-400 w-36 shrink-0">KEY FACTORS:</span>
-            <span id="key_factors">--</span>
+  <body class="min-h-screen bg-[#0f172a] text-white p-6">
+    <div class="max-w-5xl mx-auto">
+      <!-- Header with Currency Selector -->
+      <div class="flex flex-col md:flex-row justify-between items-start mb-8">
+        <h1 class="text-4xl font-bold mb-6 md:mb-0">Exchange Rate Risk</h1>
+        <div class="relative w-full md:w-64">
+          <select class="appearance-none w-full bg-transparent border border-gray-600 rounded-lg px-4 py-3 text-white">
+            <option>USD / CNY</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4">
+            <i class="fas fa-chevron-down text-gray-400"></i>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-      <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
-        <h2 class="text-lg text-blue-300 mb-4">3-Day Risk Forecast</h2>
-        <canvas id="riskForecastChart" class="w-full"></canvas>
-      </div>
-      <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
-        <div class="flex items-center mb-4">
-          <span class="text-blue-400 text-2xl mr-2">📰</span>
-          <h2 class="text-lg">Market Sentiment Score (Beta)</h2>
+      
+      <!-- First Row - Risk Level and Prediction -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Risk Level Card -->
+        <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
+          <h2 class="text-lg text-blue-300 mb-4">RISK LEVEL</h2>
+          <div class="flex flex-col items-center">
+            <div class="relative w-48 h-32">
+              <canvas id="riskGauge" width="200" height="200"></canvas>
+              <div id="gaugeValue" class="absolute top-1/2 left-1/2 transform -translate-x-[40%] -translate-y-[1%] flex flex-col items-center">
+                <span class="text-4xl font-bold" id="riskScoreDisplay">--</span>
+              </div>
+            </div>
+            <div class="text-center mt-4">
+              <div id="riskTextLabel" class="text-3xl font-bold uppercase">--</div>
+              <div id="riskTextExplain" class="mt-2 text-sm text-gray-400">--</div>
+            </div>
+          </div>
         </div>
-        <textarea class="w-full bg-[#11151b] border border-gray-600 rounded-lg p-4 text-white mb-3" placeholder="Paste financial news content"></textarea>
-        <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white text-sm font-semibold">Analyze</button>
-        <div class="mt-4">
-          <h3 class="text-md mb-1">Anyze Sentiment</h3>
-          <div class="text-red-500 font-bold mb-2">-0.42 (Negative)</div>
-          <p class="text-sm text-gray-300">The market sentiment is skewed to the downside, with short-term pressure on the exchange rate likely.</p>
+        
+        <!-- Prediction Card -->
+        <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
+          <h2 class="text-2xl mb-5">Prediction</h2>
+          <div id="prediction_rate" class="text-7xl font-bold mb-3">--</div>
+          <div class="flex items-center text-teal-500 mb-4">
+            <i class="fas fa-arrow-up h-5 w-5 mr-1"></i>
+            <span id="volatility_label">--</span>
+          </div>
+          <div class="space-y-2">
+            <div class="flex">
+              <span class="text-blue-400 w-36">RISK:</span>
+              <span id="risk_percentage">--</span>
+            </div>
+            <div class="flex">
+              <span class="text-blue-400 w-36">DATE:</span>
+              <span id="prediction_date">--</span>
+            </div>
+            <div class="flex">
+              <span class="text-blue-400 w-36 shrink-0">KEY FACTORS:</span>
+              <span id="key_factors">--</span>
+            </div>
+          </div>
         </div>
+      </div>
+      
+      <!-- Second Row - 3-Day Forecast and Sentiment -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+        <!-- 3-Day Risk Forecast -->
+        <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
+          <h2 class="text-lg text-blue-300 mb-4">Past 20-Day Risk Forecast</h2>
+          <canvas id="riskForecastChart" class="w-full h-[200px]"></canvas>
+        </div>
+        
+        <!-- Market Sentiment Card -->
+        <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
+          <div class="flex items-center mb-4">
+            <span class="text-blue-400 text-2xl mr-2">📰</span>
+            <h2 class="text-lg">Market Sentiment Score (Beta)</h2>
+          </div>
+          
+          <textarea id="sentimentText" class="w-full bg-[#11151b] border border-gray-600 rounded-lg p-4 text-white mb-3" placeholder="Paste financial news content"></textarea>
+          
+          <button id="analyzeSentiment" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white text-sm font-semibold">Analyze</button>
+          
+          <div class="mt-4">
+            <h3 class="text-md mb-1">Anyze Sentiment</h3>
+            <div id="sentimentScore" class="font-bold mb-2">--</div>
+            <p class="text-sm text-gray-300">
+              The market sentiment is skewed to the downside, with short-term pressure on the exchange rate likely.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4 text-sm text-gray-500 text-center">
+        Powered by <span class="font-bold">XGBoost (SMOTE+ENN balanced)</span> | Macro Source: FRED | Price Data: Yahoo Finance
       </div>
     </div>
 
-    <div class="mt-4 text-sm text-gray-500 text-center">
-      Powered by <span class="font-bold">XGBoost (SMOTE+ENN balanced)</span> | Macro Source: FRED | Price Data: Yahoo Finance
-    </div>
-  </div>
-
-  <script src="/static/gauge.js"></script>
-  <script>
-    fetch('/data?pair=USD/CNY')
-      .then(res => res.json())
-      .then(data => {
-        initGauge(data.risk_index / 100);
-        const labelMap = {
-          "Low": "LOW RISK",
-          "Medium": "MEDIUM RISK",
-          "High": "HIGH RISK"
-        };
-
-        const explainMap = {
-          "Low": "Stable outlook. No immediate concerns.",
-          "Medium": "Elevated short-term volatility.",
-          "High": "High-risk range detected. Stay alert."
-        };
-
-        document.getElementById("riskTextLabel").textContent = labelMap[data.risk_label] || "UNKNOWN";
-        document.getElementById("riskTextExplain").textContent = explainMap[data.risk_label] || "No description available.";
-
-
-        document.getElementById("prediction_rate").textContent = data.risk_index;
-        document.getElementById("volatility_label").textContent = data.risk_label;
-        document.getElementById("risk_percentage").textContent = data.risk_index;
-        document.getElementById("prediction_date").textContent = new Date(data.prediction_date).toDateString();
-        document.getElementById("key_factors").textContent = (data.key_factors && data.key_factors.length)
-          ? data.key_factors.join(", ")
-          : "No dominant factors today";
-
-        const labels = data.recent_predictions.map(p =>
-          new Date(p.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })
-        );
-
-        const values = data.recent_predictions.map(p =>
-          Math.round(
-            p.risk_prob_low * 20 +
-            p.risk_prob_medium * 60 +
-            p.risk_prob_high * 100
-          )
-        );
-
-
-        const colors = values.map(score => {
-          if (score < 40) return "#65b168";     // Low
-          if (score < 70) return "#ffcc00";     // Medium
-          return "#ff4d4d";                     // High
-        });
-
-        const ctx = document.getElementById('riskForecastChart').getContext('2d');
-        new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [{
-              label: 'Risk %',
-              data: values,
-              borderColor: '#4169e1',
-              backgroundColor: 'rgba(65,105,225,0.2)',
-              pointBackgroundColor: colors,
-              pointRadius: 5,
-              tension: 0.2
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                callbacks: {
-                  label: ctx => ctx.parsed.y + '%'
-                }
-              }
-            },
-            scales: {
-              x: { ticks: { color: '#ccc' }, grid: { color: '#2b2e44' } },
-              y: { min: 0, max: 100, ticks: { color: '#ccc', callback: val => val + '%' }, grid: { color: '#2b2e44' } }
-            }
-          }
-        });
-      });
-  </script>
-</body>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  </body>
 </html>

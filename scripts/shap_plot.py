@@ -25,7 +25,6 @@ X = pd.read_csv(X_path)
 
 
 if isinstance(shap_values, list):
-    # 对于多分类：shap_values 是 [class0_array, class1_array, class2_array]
     for i, class_values in enumerate(shap_values):
         if class_values.shape != X.shape:
             raise ValueError(f"Class {i} 的 SHAP 值维度 {class_values.shape} 与特征 X {X.shape} 不一致")

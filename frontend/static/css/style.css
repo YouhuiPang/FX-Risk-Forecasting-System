@@ -1,0 +1,40 @@
+/* Main Styles */
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.dashboard-gradient {
+  background-image: linear-gradient(to bottom right, rgba(30, 41, 59, 0.5), rgb(30, 41, 59));
+}
+
+.glass-card {
+  background-color: rgba(30, 41, 59, 0.3);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Risk colors */
+.risk-low {
+  color: #10b981; /* Green */
+}
+
+.risk-medium {
+  color: #f59e0b; /* Amber */
+}
+
+.risk-high {
+  color: #ef4444; /* Red */
+}
+
+/* Sentiment colors */
+.sentiment-negative {
+  color: #ef4444; /* Red */
+}
+
+.sentiment-neutral {
+  color: #f59e0b; /* Amber */
+}
+
+.sentiment-positive {
+  color: #10b981; /* Green */
+}
