@@ -52,6 +52,7 @@ function updateRiskDisplay(data) {
   
   // Update prediction card
   document.getElementById('prediction_rate').textContent = data.risk_index;
+
   document.getElementById('volatility_label').textContent = data.risk_label;
   document.getElementById('risk_percentage').textContent = data.risk_index;
   document.getElementById('prediction_date').textContent = data.prediction_date;
@@ -60,6 +61,27 @@ function updateRiskDisplay(data) {
     ? data.key_factors.join(', ')
     : 'No dominant factors detected';
 
+  const preds = data.recent_predictions;
+  if (preds.length >= 2) {
+    const today = preds[preds.length - 1];
+    const yesterday = preds[preds.length - 2];
+
+    const today_score = today.risk_prob_low * 20 + today.risk_prob_medium * 60 + today.risk_prob_high * 100;
+    const yest_score = yesterday.risk_prob_low * 20 + yesterday.risk_prob_medium * 60 + yesterday.risk_prob_high * 100;
+
+    const trendIcon = document.getElementById('riskTrendArrow');
+    const labelText = document.getElementById('volatility_label');
+    if (today_score > yest_score + 1) {
+      trendIcon.className = 'fas fa-arrow-up h-5 w-5 mr-1 text-red-500';
+      labelText.className = 'text-red-500';
+    } else if (today_score < yest_score - 1) {
+      trendIcon.className = 'fas fa-arrow-down h-5 w-5 mr-1 text-green-500';
+      labelText.className = 'text-green-500';
+    } else {
+      trendIcon.className = 'fas fa-arrows-alt-h h-5 w-5 mr-1 text-yellow-500';
+      labelText.className = 'text-yellow-500';
+    }
+  }
 }
 
 // Setup the risk gauge

@@ -18,8 +18,11 @@
     <div class="max-w-5xl mx-auto">
       <!-- Header with Currency Selector -->
       <div class="flex flex-col md:flex-row justify-between items-start mb-8">
-        <h1 class="text-4xl font-bold mb-6 md:mb-0">Exchange Rate Risk</h1>
-        <div class="relative w-full md:w-64">
+        <div>
+          <h1 class="text-4xl font-bold mb-1">FX Risk Forecast</h1>
+          <p class="text-sm text-gray-400">Forecasting Volatility Over the Next 3 Days</p>
+       </div>
+       <div class="relative w-full md:w-64 mt-4 md:mt-0">
           <select class="appearance-none w-full bg-transparent border border-gray-600 rounded-lg px-4 py-3 text-white">
             <option>USD / CNY</option>
           </select>
@@ -28,6 +31,7 @@
           </div>
         </div>
       </div>
+
       
       <!-- First Row - Risk Level and Prediction -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -50,15 +54,15 @@
         
         <!-- Prediction Card -->
         <div class="card p-6 border border-gray-600 rounded-lg bg-[#1e293b]">
-          <h2 class="text-2xl mb-5">Prediction</h2>
+          <h2 class="text-2xl mb-5">Risk Prediction Over the Next 3 Days</h2>
           <div id="prediction_rate" class="text-7xl font-bold mb-3">--</div>
           <div class="flex items-center text-teal-500 mb-4">
-            <i class="fas fa-arrow-up h-5 w-5 mr-1"></i>
+            <i id="riskTrendArrow" class="fas fa-arrow-up h-5 w-5 mr-1"></i>
             <span id="volatility_label">--</span>
           </div>
           <div class="space-y-2">
             <div class="flex">
-              <span class="text-blue-400 w-36">RISK:</span>
+              <span class="text-blue-400 w-36">RISK INDEX:</span>
               <span id="risk_percentage">--</span>
             </div>
             <div class="flex">
