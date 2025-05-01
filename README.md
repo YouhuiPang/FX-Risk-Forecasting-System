@@ -54,7 +54,7 @@ Contains trained models and selected feature sets for each currency pair (`.pkl`
 ### 🔁 Workflow Summary
 
 1. **Data Update**: `scheduler.py` triggers data fetching daily.
-2. **Feature Engineering**: `feature_engineer.py` processes new raw data.
+2. **Data Fetching & Feature Engineering**: `data_fetcher.py` processes new raw data and update latest features.
 3. **Prediction**: `predictor.py` loads the latest features and model to generate risk predictions.
 4. **Web Display**: `app.py` serves the dashboard at `/`, and `/data` API responds with live predictions and SHAP-based key factor explanations.
 5. **Frontend Rendering**: `main.js` dynamically updates charts, risk level indicators, and sentiment fields.
