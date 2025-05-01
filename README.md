@@ -1,7 +1,7 @@
 
 # FX Risk Prediction Dashboard
 
-This project is a web-based FX risk prediction system designed to help users intuitively understand short-term currency volatility. It uses historical exchange rate data and macroeconomic indicators to predict the next 3-day risk level of currency pairs (e.g., USD/CNY) using a machine learning model. The final product is a visual dashboard that requires no financial background to interpret.
+This project is a web-based FX risk prediction system designed to help users intuitively understand short-term currency volatility. It uses historical exchange rate data and macroeconomic indicators to predict the next 3-day risk level of currency pairs (e.g., USD/CNY) using a machine learning model. The final product is a visual dashboard that requires no financial background to interpret. 
 
 ---
 
