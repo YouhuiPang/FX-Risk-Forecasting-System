@@ -61,6 +61,23 @@ Contains trained models and selected feature sets for each currency pair (`.pkl`
 
 ---
 
+## 🔧 Prerequisites
+
+Before installing and running this project, make sure you have Python installed:
+
+- **Python 3.8 or higher**  
+  Download from: [https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+- **(Recommended) Virtual Environment**  
+  It's best to isolate project dependencies using a virtual environment:
+  ```bash
+  python -m venv venv
+  source venv/bin/activate      # macOS / Linux
+  venv\Scripts\activate       # Windows
+  ```
+
+---
+
 ## 🚀 Installation
 
 ```bash
