@@ -1,5 +1,5 @@
 
-# FX Risk Prediction Dashboard
+# Quantitative FX Risk Forecasting System | ML-Based Volatility Modeling
 
 This project is a web-based FX risk prediction system designed to help users intuitively understand short-term currency volatility. It uses historical exchange rate data and macroeconomic indicators to predict the next 3-day risk level of currency pairs (e.g., USD/CNY) using a machine learning model. The final product is a visual dashboard that requires no financial background to interpret. 
 
@@ -81,7 +81,7 @@ Before installing and running this project, make sure you have Python installed:
 ## 🚀 Installation
 
 ```bash
-git clone https://github.com/YouhuiPang/exchange_risk_project.git
+git clone https://github.com/YouhuiPang/FX-Risk-Forecasting-System-ML-Based-Volatility-Modeling.git
 cd exchange_risk_project
 pip install -r requirements.txt
 ```
