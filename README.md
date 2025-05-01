@@ -83,7 +83,7 @@ Before installing and running this project, make sure you have Python installed:
 
 ```bash
 git clone https://github.com/YouhuiPang/FX-Risk-Forecasting-System-ML-Based-Volatility-Modeling.git
-cd exchange_risk_project
+cd FX-Risk-Forecasting-System-ML-Based-Volatility-Modeling
 pip install -r requirements.txt
 ```
 
