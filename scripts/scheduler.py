@@ -74,8 +74,8 @@ def main():
     pairs = ["USD/CNY"]
 
     for pair in pairs:
-        schedule.every().day.at("00:42").do(job_update_and_train, pair=pair)
-        schedule.every().day.at("00:43").do(job_predict, pair=pair)
+        schedule.every().day.at("00:00").do(job_update_and_train, pair=pair)
+        schedule.every().day.at("00:01").do(job_predict, pair=pair)
 
     print("调度器已启动，等待执行任务……")
     while True:
