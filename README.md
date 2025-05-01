@@ -9,8 +9,8 @@ This project is a web-based FX risk prediction system designed to help users int
 
 - Real-time risk predictions (Low, Medium, High)
 - SHAP-based explanation of key influencing factors
-- 3-day risk forecast chart
-- Optional sentiment analyzer (Beta)
+- Past 20-day risk forecast chart
+- Optional sentiment analyzer (Beta Not Functioning)
 - Fully functional Flask + Tailwind CSS frontend
 
 ---
@@ -80,16 +80,18 @@ python app.py
 ```
 Then open your browser at [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-### To manually trigger prediction:
+#### To manually update and predict:
 ```bash
+# Step 1: Fetch the latest exchange rate + macroeconomic data
+python scripts/data_fetcher.py
+
+# Step 2: Run prediction using the latest features
 python scripts/predictor.py
 ```
 
----
-
 ## ⏰ Scheduled Prediction (Optional)
 
-To enable automatic daily prediction and data update:
+To enable scheduled daily automatic forecast and data updates (This is set to update at 00:00):
 ```bash
 python scripts/scheduler.py
 ```
