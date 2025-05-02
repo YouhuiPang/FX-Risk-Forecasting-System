@@ -20,7 +20,7 @@ This project is a web-based FX risk prediction system designed to help users int
 
 [![Visit Site](https://img.shields.io/badge/View-Live%20App-blue?style=for-the-badge)](https://fx-risk-forecasting-system.onrender.com)
 
-Explore the FX Risk Forecasting Dashboard here:  
+Explore the Quantitative FX Risk Forecasting System here:  
 🔗 https://fx-risk-forecasting-system.onrender.com
 
 ---
