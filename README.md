@@ -16,6 +16,15 @@ This project is a web-based FX risk prediction system designed to help users int
 
 ---
 
+## 🚀 Live Demo
+
+[![Visit Site](https://img.shields.io/badge/View-Live%20App-blue?style=for-the-badge)](https://fx-risk-forecasting-system.onrender.com)
+
+Explore the FX Risk Forecasting Dashboard here:  
+🔗 https://fx-risk-forecasting-system.onrender.com
+
+---
+
 ## 🏗️ System Architecture
 
 This project follows a modular structure that separates data processing, model training, prediction logic, and frontend dashboard into clear components. Below is an overview of the system architecture:
@@ -89,7 +98,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🔧 Usage
+## 🔧 Local Usage
 
 ### To start the web dashboard:
 ```bash
