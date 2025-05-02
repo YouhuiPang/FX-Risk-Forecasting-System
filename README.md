@@ -93,7 +93,6 @@ pip install -r requirements.txt
 
 ### To start the web dashboard:
 ```bash
-cd frontend
 python app.py
 ```
 Then open your browser at [http://127.0.0.1:5000](http://127.0.0.1:5000)
