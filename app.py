@@ -43,7 +43,7 @@ def get_data():
 
     pair = request.args.get("pair", "USD/CNY")
     pair_key = pair.lower().replace("/", "_")
-    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    root = os.path.dirname(os.path.abspath(__file__))
     data_dir = os.path.join(root, "data")
 
     prediction_path = os.path.join(data_dir, f"predictions_{pair_key}.csv")
